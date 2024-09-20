@@ -22,8 +22,6 @@ app.get("/", (req, res) => {
 
 
 app.use(express.json());
-app.use("/assets", express.static("assets"));
-app.use("/bgimg", express.static("bgimg"));
 connection.mymongodb();
 user_route(app);
 news_route(app);
