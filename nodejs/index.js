@@ -8,7 +8,19 @@ const news_route = require("./src/route/news.route");
 const background_route = require("./src/route/background.route");
 // ====================================================================>
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://client-delta-indol.vercel.app",
+    methods: "GET,POST,DELETE,PUT",
+  })
+);
+
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the API!");
+});
+
+
 app.use(express.json());
 app.use("/assets", express.static("assets"));
 app.use("/bgimg", express.static("bgimg"));

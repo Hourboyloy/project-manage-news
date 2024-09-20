@@ -1,10 +1,16 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
+const uri = process.env.URL_DATABSE || "your_mongodb_uri";
 
 const mymongodb = async () => {
-  await mongoose
-    .connect(process.env.URL_DATABSE)
-    .then((result) => console.log("success connection"))
-    .catch((error) => console.log(error));
+    try {
+      await mongoose.connect(uri, {
+        // useNewUrlParser: true
+      });
+      console.log("Successfully connected to MongoDB");
+    } catch (error) {
+      console.error("Error connecting to MongoDB:", error);
+      process.exit(1);
+    }
 };
 module.exports = { mymongodb };
